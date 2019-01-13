@@ -11,5 +11,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
+    @micropost = Micropost.find(params[:post_id])
+    current_user.unfavorite(@micropost)
+    redirect_back(fallback_location: root_url)
   end
 end
